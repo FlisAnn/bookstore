@@ -32,7 +32,10 @@ const addBook = (request, response, next) => {
     });
 };
 
-app.route("/books").get(getBooks).post(addBook);
+app
+.route("/books")
+.get(getBooks)
+.post(addBook);
 
 app.listen(3001, () => {
   console.log("Server is up and running..");
