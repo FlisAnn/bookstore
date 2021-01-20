@@ -22,3 +22,5 @@ app
 app.listen(3001, () => {
   console.log("Server is up and running..");
 });
+
+module.exports = app
