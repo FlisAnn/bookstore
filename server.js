@@ -14,6 +14,9 @@ app
 .get(booksController.index)
 .post(booksController.create);
 
+app
+  .route('/books/:id')
+  .get(booksController.show)
 app.listen(3001, () => {
   console.log("Server is up and running..");
 });

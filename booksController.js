@@ -3,7 +3,9 @@ const { pool } = require("./config");
 const booksController = {
   async index(request, response, next) {
     const { rows } = await pool.query("SELECT * FROM books");
-    response.status(200).json({ books: rows });
+    response
+      .status(200)
+      .json({ books: rows });
   },
 
   async create(request, response, next) {
@@ -13,7 +15,16 @@ const booksController = {
       author,
       title,
     ]);
-    response.status(201).json({ message: "The book was successfully added" });
+    response
+      .status(201)
+      .json({ message: "The book was successfully added" });
+  },
+  async show(request, response, next) {
+    const { id } = request.params;
+    const { rows } = await pool.query("SELECT * FROM books WHERE id = $1 LIMIT 1", [id]);
+    response
+      .status(200)
+      .json({book: rows[0]})
   },
 };
 
