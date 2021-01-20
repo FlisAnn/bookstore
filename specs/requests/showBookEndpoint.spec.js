@@ -1,7 +1,7 @@
 const app = require("../../server");
 const supertest = require("supertest");
 const { expect, jsonResponse } = require("../specHelper");
-const fs = require('fs') 
+const fs = require("fs");
 let server, request, response;
 
 beforeEach(done => {
@@ -22,12 +22,12 @@ describe("GET /books/id", () => {
     expect(response.status).to.equal(200);
   });
 
-  it('is expected to return a specific book', () => {
-  const expectedBody = JSON.parse(
-  fs.readFileSync(
-    process.cwd()+ "/specs/fixtures/singleBook.json"
-    ).toString()
-    )
-    expect(jsonResponse(response)).to.equal(JSON.stringify(expectedBody))
+  it("is expected to return a specific book", () => {
+    const expectedBody = JSON.parse(
+      fs
+        .readFileSync(process.cwd() + "/specs/fixtures/singleBook.json")
+        .toString()
+    );
+    expect(jsonResponse(response)).to.equal(JSON.stringify(expectedBody));
   });
 });
