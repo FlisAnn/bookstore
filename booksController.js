@@ -14,6 +14,7 @@ const booksController = {
     ]);
     response.status(201).json({ message: "The book was successfully added" });
   },
+  
   async show(request, response, next) {
     const { id } = request.params;
     const {
@@ -21,11 +22,13 @@ const booksController = {
     } = await pool.query("SELECT * FROM books WHERE id = $1 LIMIT 1", [id]);
     response.status(200).json({ book: rows[0] });
   },
+
   async delete(request, response, next) {
     const { id } = request.params;
     await pool.query("DELETE FROM books WHERE id = $1", [id]);
     response.status(202).json({ message: "The book was removed" });
   },
+
   async update(request, response, next) {
     const { author, title } = request.body;
     const { id } = request.params;
